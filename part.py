@@ -1,4 +1,7 @@
 import numpy as np
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
 
 parts={
     1:'1_INTRODUCTION,RELATED WORK',
@@ -14,10 +17,13 @@ class member:
         self.second_choice_num=second_choice_num
         self.part_num=0
 
-member1=member(name="命苫匡真",first_choice_num=4,second_choice_num=1)
-member2=member(name="葛ショウトウ",first_choice_num=4,second_choice_num=None)
-member3=member(name="BATBAATAR",first_choice_num=1,second_choice_num=2)
-member4=member(name="橋本蓮　",first_choice_num=1,second_choice_num=None)
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path) #.envファイルの読み込み
+
+member1=member(name=os.environ.get("NAME1"),first_choice_num=4,second_choice_num=1)
+member2=member(name=os.environ.get("NAME2"),first_choice_num=4,second_choice_num=None)
+member3=member(name=os.environ.get("NAME3"),first_choice_num=1,second_choice_num=2)
+member4=member(name=os.environ.get("NAME4"),first_choice_num=1,second_choice_num=None)
 
 members=[member1,member2,member3,member4]
 choices=np.array([m.first_choice_num for m in members])
